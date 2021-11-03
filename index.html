@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    
+    enter city: <input id="cityName" type="text">
+
+    <button onclick="getWeather()">Check</button>
+
+    <h3 id="temp"></h3>
+    <h3 id="humi"></h3>
+
+    <script>
+        function getWeather() {
+
+            const cityName = document.getElementById("cityName").value
+
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=363a0329911c1b074081245aae1023c3&units=metric`)
+
+                .then(function (response) {
+                    console.log(response);
+
+                    document.getElementById("temp").innerText = "Temperature: "+response.data.main.temp;
+                    document.getElementById("humi").innerText = "humidity: "+response.data.main.humidity;
+                })
+        }
+    </script>
+</body>
+</html>
